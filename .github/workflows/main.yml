@@ -42,8 +42,8 @@ jobs:
       - name: Copy via ssh
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
-          local: D:\a\SimpleMVC\SimpleMVC\SimpleMVC\bin\app.publish\
-          remote: D:\Hosting\AutoDeploy\SimpleMVC\
+          local: D:\a\SampleDemoProject\SampleDemoProject\SampleDemoProject\bin\app.publish\
+          remote: D:\Hosting\AutoDeploy\SampleDemoProject\
           host: ${{ secrets.REMOTE_HOST }}
           port: ${{ secrets.PORT }}
           username: ${{ secrets.REMOTE_USER }}
