@@ -21,3 +21,5 @@ jobs:
         name: Checkout Code
       - name: Setup VS2019
         uses: warrenbuckley/Setup-MSBuild@v1
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
