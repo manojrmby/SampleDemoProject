@@ -46,7 +46,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
           #local: D:\a\SampleDemoProject\SampleDemoProject\SampleDemoProject\bin\app.publish\
-          local: D:\a\SampleDemoProject\
+          local: D:\a\SampleDemoProject\Deploy
           remote: D:\Hosting\SampleDemoProject\
           host: ${{ secrets.REMOTE_HOST }}
           port: ${{ secrets.PORT }}
