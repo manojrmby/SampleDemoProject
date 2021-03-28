@@ -38,6 +38,7 @@ jobs:
      #Publishing to the folder 
       - name: Publish to folder
         run: msbuild SampleDemoProject.sln /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl="bin\app.publish\" /p:PackageAsSingleFile=false
+        
       - name: Copy via ssh
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
@@ -48,5 +49,25 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.SERVER_SSH_KEY }}
           passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
-        
+      - name: Send mail
+        #if: always()
+        uses: dawidd6/action-send-mail@v2
+        with:
+          # mail server settings
+          server_address: smtp.gmail.com
+          server_port: 587
+          # user credentials
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          # email subject
+          subject: Deployed to development server succesfully
+          # email body as text
+          body: Mail Body
+          # comma-separated string, send email to
+          to: manogekumar@promantus.com
+          # from email name
+          from: Manoge Kumar
+          content_type: text/html
+          # Optional converting Markdown to HTML (set content_type to text/html too):
+          convert_markdown: true
 
