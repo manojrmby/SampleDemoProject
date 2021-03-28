@@ -41,16 +41,17 @@ jobs:
         #run: msbuild SampleDemoProject.sln /p:configuration=Release;platform="any cpu";WebPublishMethod=Package;PackageFileName="\MyFolder\package.zip";DesktopBuildPackageLocation="\MyFolder\package.zip";PackageAsSingleFile=true;PackageLocation="\MyFolder\package.zip";DeployOnBuild=true;DeployTarget=Package
         #run: msbuild SampleDemoProject.sln /p:configuration=Release /p:WebPublishMethod=Package /p:PackageFileName="bin\app.publish\package.zip" /p:DesktopBuildPackageLocation="bin\app.publish\package.zip"/p:PackageAsSingleFile=true /p:PackageLocation="bin\app.publish\package.zip" /p:DeployOnBuild=true /p:DeployTarget=Package
         run: msbuild SampleDemoProject.sln /p:configuration=Release /p:WebPublishMethod=Package /p:PackageFileName="D:\a\SampleDemoProject\package.zip" /p:DesktopBuildPackageLocation="D:\a\SampleDemoProject\package.zip" /p:PackageAsSingleFile=true /p:PackageLocation="D:\a\SampleDemoProject\package.zip" /p:DeployOnBuild=true /p:DeployTarget=Package
-      # - name: Copy via ssh
-      #   uses: garygrossgarten/github-action-scp@v0.7.3
-      #   with:
-      #     local: D:\a\SampleDemoProject\SampleDemoProject\SampleDemoProject\bin\app.publish\
-      #     remote: D:\Hosting\SampleDemoProject\
-      #     host: ${{ secrets.REMOTE_HOST }}
-      #     port: ${{ secrets.PORT }}
-      #     username: ${{ secrets.REMOTE_USER }}
-      #     privateKey: ${{ secrets.SERVER_SSH_KEY }}
-      #     passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+      - name: Copy via ssh
+        uses: garygrossgarten/github-action-scp@v0.7.3
+        with:
+          #local: D:\a\SampleDemoProject\SampleDemoProject\SampleDemoProject\bin\app.publish\
+          local: D:\a\SampleDemoProject\package.zip
+          remote: D:\Hosting\SampleDemoProject\
+          host: ${{ secrets.REMOTE_HOST }}
+          port: ${{ secrets.PORT }}
+          username: ${{ secrets.REMOTE_USER }}
+          privateKey: ${{ secrets.SERVER_SSH_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
       # - name: Send mail
       #   #if: always()
       #   uses: dawidd6/action-send-mail@v2
