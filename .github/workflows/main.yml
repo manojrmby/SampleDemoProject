@@ -19,3 +19,5 @@ jobs:
       #Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2.3.4
         name: Checkout Code
+      - name: Setup VS2019
+        uses: warrenbuckley/Setup-MSBuild@v1
