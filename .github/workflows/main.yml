@@ -19,18 +19,34 @@ jobs:
       #Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2.3.4
         name: Checkout Code
+     #Adding Msbuild to our runner(Windows)
       - name: Setup VS2019
         uses: warrenbuckley/Setup-MSBuild@v1
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+     #Adding Nuget to restore our project in runner(Windows)
       - name: Setup Nuget.exe
         uses: warrenbuckley/Setup-Nuget@v1
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+     #Restoring packages for our package 
       - name: Restore NuGet Packages
         run: nuget restore SampleDemoProject.sln
+     #Re-Building the project for verification
       - name: Build
         run: msbuild SampleDemoProject.sln /p:Configuration=Release
+     #Publishing to the folder 
       - name: Publish to folder
         run: msbuild SampleDemoProject.sln /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl="bin\app.publish\" /p:PackageAsSingleFile=false
+      - name: Copy via ssh
+        uses: garygrossgarten/github-action-scp@v0.7.3
+        with:
+          local: D:\a\SimpleMVC\SimpleMVC\SimpleMVC\bin\app.publish\
+          remote: D:\Hosting\AutoDeploy\SimpleMVC\
+          host: ${{ secrets.REMOTE_HOST }}
+          port: ${{ secrets.PORT }}
+          username: ${{ secrets.REMOTE_USER }}
+          privateKey: ${{ secrets.SERVER_SSH_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+        
 
