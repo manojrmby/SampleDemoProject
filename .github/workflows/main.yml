@@ -48,6 +48,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.SERVER_SSH_KEY }}
           passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+        # Send a Confirmation mail
       - name: Send mail
         #if: always()
         uses: dawidd6/action-send-mail@v2
@@ -61,7 +62,7 @@ jobs:
           # email subject
           subject: Deployed to development server succesfully
           # email body as text
-          body: Mail Body
+          body: A deploy has been made on the server sucessfuly
           # comma-separated string, send email to
           to: manogekumar@promantus.com
           # from email name
