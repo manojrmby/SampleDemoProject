@@ -39,7 +39,7 @@ jobs:
       - name: Publish to folder
         #run: msbuild SampleDemoProject.sln /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl="bin\app.publish\" /p:PackageAsSingleFile=false
         #run: msbuild SampleDemoProject.sln /p:configuration=Release;platform="any cpu";WebPublishMethod=Package;PackageFileName="\MyFolder\package.zip";DesktopBuildPackageLocation="\MyFolder\package.zip";PackageAsSingleFile=true;PackageLocation="\MyFolder\package.zip";DeployOnBuild=true;DeployTarget=Package
-        run: msbuild SampleDemoProject.sln /p:configuration=Release;platform="any cpu";WebPublishMethod=Package;PackageFileName="bin\app.publish\package.zip";DesktopBuildPackageLocation="bin\app.publish\package.zip";PackageAsSingleFile=true;PackageLocation="bin\app.publish\package.zip";DeployOnBuild=true;DeployTarget=Package
+        run: msbuild SampleDemoProject.sln /p:configuration=Release;WebPublishMethod=Package;PackageFileName="bin\app.publish\package.zip";DesktopBuildPackageLocation="bin\app.publish\package.zip";PackageAsSingleFile=true;PackageLocation="bin\app.publish\package.zip";DeployOnBuild=true;DeployTarget=Package
       # - name: Copy via ssh
       #   uses: garygrossgarten/github-action-scp@v0.7.3
       #   with:
