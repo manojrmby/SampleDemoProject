@@ -1,4 +1,4 @@
-l#Name of the Work Flow to be displayed
+#Name of the Work Flow to be displayed
 name: Build Web App
 
 # Controls when the action will run.
@@ -41,6 +41,7 @@ jobs:
         #run: msbuild SampleDemoProject.sln /p:configuration=Release;platform="any cpu";WebPublishMethod=Package;PackageFileName="\MyFolder\package.zip";DesktopBuildPackageLocation="\MyFolder\package.zip";PackageAsSingleFile=true;PackageLocation="\MyFolder\package.zip";DeployOnBuild=true;DeployTarget=Package
         #run: msbuild SampleDemoProject.sln /p:configuration=Release /p:WebPublishMethod=Package /p:PackageFileName="bin\app.publish\package.zip" /p:DesktopBuildPackageLocation="bin\app.publish\package.zip"/p:PackageAsSingleFile=true /p:PackageLocation="bin\app.publish\package.zip" /p:DeployOnBuild=true /p:DeployTarget=Package
         run: msbuild SampleDemoProject.sln /p:configuration=Release /p:WebPublishMethod=Package /p:PackageFileName="D:\a\SampleDemoProject\Deploy\package.zip" /p:DesktopBuildPackageLocation="D:\a\SampleDemoProject\Deploy\package.zip" /p:PackageAsSingleFile=true /p:PackageLocation="D:\a\SampleDemoProject\Deploy\package.zip" /p:DeployOnBuild=true /p:DeployTarget=Package
+       
       - name: Copy via ssh
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
