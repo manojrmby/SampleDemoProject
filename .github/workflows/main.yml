@@ -37,7 +37,7 @@ jobs:
         run: msbuild SampleDemoProject.sln /p:Configuration=Release
       #Publishing to the folder
       - name: Publish to folder
-        run: msbuild SampleDemoProject.sln /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl="bin\app.publish\" /p:PackageAsSingleFile=false
+        run: msbuild SampleDemoProject.sln /p:Configuration=Production /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl="bin\app.publish\" /p:PackageAsSingleFile=false
       - name: Copy via ssh
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
